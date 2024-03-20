@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 
 public class Main {
-
+//aa
     static ArrayList<Cidade> infoCidades;
     static ArrayList<Paises> infoPaises;
     static ArrayList<Populacao> infoPopulacao;
