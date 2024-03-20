@@ -33,7 +33,7 @@ public class Main {
 
         if (tipo == TipoEntidade.INPUT_INVALIDO){
 
-            for(int i = 0; i <= infoCidades.size(); i++){
+            /*for(int i = 0; i <= infoCidades.size(); i++){
 
                 String[] elementos = infoCidades.get(i).toString().split(",");
 
@@ -42,7 +42,7 @@ public class Main {
                 }else{
                     linhasCertasCidades++;
                 }
-            }
+            }*/
 
         }
 
