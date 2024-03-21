@@ -3,6 +3,7 @@ package pt.ulusofona.aed.deisiworldmeter;
 public class Cidade {
     String alfa2;
     String cidade;
+
     int  regiao;
     Double populacao;
     Double latitude;
@@ -28,6 +29,6 @@ public class Cidade {
 
     @Override
     public String toString() {
-        return alfa2 + "," + cidade + "," + regiao + "," + latitude + "," + longitude;
+        return cidade + " | " + alfa2.toUpperCase() + " | " + regiao + " | "+ populacao.intValue() + " | (" + latitude + "," + longitude+")";
     }
 }

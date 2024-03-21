@@ -14,7 +14,7 @@ public class Paises {
 
     @Override
     public String toString() {
-        return "" + id + "," + alfa2 + "," + alfa3 + "," + nome;
+        return nome + " | " + id + " | " + alfa2.toUpperCase() + " | " + alfa3.toUpperCase();
     }
 }
 

@@ -24,6 +24,8 @@ public class Populacao {
 
     @Override
     public String toString() {
-        return "" + id + "," + popMasculina + "," + popFeminina + "," + densidade;
+        return "" + id + " | " + popMasculina + " | " + popFeminina + " | " + densidade;
     }
+
+
 }
