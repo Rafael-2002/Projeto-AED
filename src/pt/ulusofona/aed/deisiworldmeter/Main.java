@@ -11,9 +11,7 @@ import java.util.Objects;
 public class Main {
 //aa
     static ArrayList<Cidade> infoCidades;
-
     static ArrayList<Paises> infoPaises;
-
     static ArrayList<Populacao> infoPopulacao;
     static int countPopulacaoInvalidos=0 ;
     static int countPaisesInvalidos= 0;
@@ -74,19 +72,21 @@ public class Main {
 
 
 
+
+
         try (BufferedReader reader = new BufferedReader(new FileReader(filePaises))) {
             String linha;
             reader.readLine();
             int checkPaisesRepetidos = 0;
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(",");
-                for (int i = 0; i < infoPaises.size()-1; i++) {
+                for (int i = 0; i < infoPaises.size(); i++) {
                      if(infoPaises.get(i).id ==Integer.parseInt(dados[0].trim())){
                          checkPaisesRepetidos++;
                      };
                 }
-                if (dados.length == 4 && !dados[0].isEmpty() && !dados[1].isEmpty()&&!dados[2].isEmpty()&&!dados[3].isEmpty() &&checkPaisesRepetidos<=1) {
-                    checkPaisesRepetidos=0;
+                if (dados.length == 4 && !dados[0].isEmpty() && !dados[1].isEmpty()&&!dados[2].isEmpty()&&!dados[3].isEmpty() && checkPaisesRepetidos==0) {
+
                     int id = Integer.parseInt(dados[0].trim());
                     String alfa2 = dados[1];
                     String alfa3 = dados[2];
@@ -97,6 +97,7 @@ public class Main {
 
                    countPaisesInvalidos++;
                 }
+                checkPaisesRepetidos=0;
             }
         }catch (IOException e) {
             return false;
@@ -113,6 +114,7 @@ public class Main {
                 for (int i = 0; i < infoPaises.size()-1; i++) {
                     if(Objects.equals(infoPaises.get(i).id, dados[0])) {
                         checkIdentificador++;
+                        break;
                     }
                 }
                 if (dados.length == 5 && dados[1].matches("\\d+")&&checkIdentificador >0) {
@@ -140,33 +142,35 @@ public class Main {
             String linha;
             // Ignora a primeira linha (títulos das colunas)
             reader.readLine();
-            int checkPais= 0;
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(",");
+                int checkPais = 0; // Reset checkPais for each new line
 
-                for (int i = 0; i < infoPaises.size()-1; i++) {
-                    if(Objects.equals(infoPaises.get(i).alfa2, dados[0])) {
+                for (int i = 0; i < infoPaises.size(); i++) {
+                    if (Objects.equals(infoPaises.get(i).alfa2, dados[0])) {
                         checkPais++;
+                        break;
                     }
                 }
-                if (dados.length == 6 && checkPais>0) {
-                    checkPais=0;
+
+                if (dados.length == 6 && checkPais > 0 &&!dados[3].isEmpty()) {
                     String alfa2 = dados[0];
                     String cidade = dados[1];
                     int regiao = Integer.parseInt(dados[2].trim());
-                    Double populacao = !dados[3].isEmpty() ? Double.parseDouble(dados[3]) : null;
+                   // Double populacao = !dados[3].isEmpty() ? Double.parseDouble(dados[3]) : null;
+                    Double populacao = Double.parseDouble(dados[3]);
                     Double latitude = Double.parseDouble(dados[4]);
                     Double longitude = Double.parseDouble(dados[5]);
                     Cidade cidades = new Cidade(alfa2, cidade, regiao, populacao, latitude, longitude);
                     infoCidades.add(cidades);
-                }else{
-
+                } else {
                     countCidadesInvalidos++;
                 }
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             return false;
         }
+
 
         return true;
     }

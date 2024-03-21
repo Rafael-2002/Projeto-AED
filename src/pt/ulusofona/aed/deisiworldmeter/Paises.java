@@ -14,7 +14,24 @@ public class Paises {
 
     @Override
     public String toString() {
-        return nome + " | " + id + " | " + alfa2.toUpperCase() + " | " + alfa3.toUpperCase();
+     int countNrMaioresQ700 = 0;
+
+
+        if(id>700){
+            for (int i = 0; i <Main.infoPopulacao.size() ; i++) {
+                if(Main.infoPopulacao.get(i).id==this.id){
+                    countNrMaioresQ700++;
+                }
+            }
+            return nome + " | " + id + " | " + alfa2.toUpperCase() + " | " + alfa3.toUpperCase()+ " | "+countNrMaioresQ700;
+        }else{
+            return nome + " | " + id + " | " + alfa2.toUpperCase() + " | " + alfa3.toUpperCase();
+        }
+
+    }
+
+    public int getId() {
+        return id;
     }
 }
 

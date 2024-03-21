@@ -4,22 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b57e8bc6-e24b-48cd-a96e-889b8c472415" name="Changes" comment="aa">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="b57e8bc6-e24b-48cd-a96e-889b8c472415" name="Changes" comment="2/9">
+      <change afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/TestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projeto.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Projeto.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cidades.csv" beforeDir="false" afterPath="$PROJECT_DIR$/cidades.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Cidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Cidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paises.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paises.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/populacao.csv" beforeDir="false" afterPath="$PROJECT_DIR$/populacao.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Paises.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Paises.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Populacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Populacao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,22 +37,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/35191/Desktop/uni/1anoRepetido/aed2/Projeto&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.TestMain.Test_Nr_Cidades.executor": "Run",
+    "JUnit.TestMain.Test_Nr_Paises.executor": "Run",
+    "JUnit.TestMain.Test_ToString_id_maior_Q_700.executor": "Run",
+    "JUnit.TestMain.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/35191/Desktop/uni/1anoRepetido/aed2/Projeto"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\35191\Desktop\uni\1anoRepetido\aed2\Projeto" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.TestMain.Test_ToString_id_maior_Q_700">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.Main" />
       <module name="Projeto" />
@@ -61,8 +74,75 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestMain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Projeto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ulusofona.aed.deisiworldmeter" />
+      <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.TestMain" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestMain.Test_Nr_Cidades" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Projeto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ulusofona.aed.deisiworldmeter" />
+      <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.TestMain" />
+      <option name="METHOD_NAME" value="Test_Nr_Cidades" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestMain.Test_Nr_Paises" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Projeto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ulusofona.aed.deisiworldmeter" />
+      <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.TestMain" />
+      <option name="METHOD_NAME" value="Test_Nr_Paises" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestMain.Test_ToString_id_maior_Q_700" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Projeto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ulusofona.aed.deisiworldmeter" />
+      <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.TestMain" />
+      <option name="METHOD_NAME" value="Test_ToString_id_maior_Q_700" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestMain.Test_ToString_id_maior_Q_700" />
+        <item itemvalue="JUnit.TestMain.Test_Nr_Cidades" />
+        <item itemvalue="JUnit.TestMain.Test_Nr_Paises" />
+        <item itemvalue="JUnit.TestMain" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -92,8 +172,19 @@
       <option name="project" value="LOCAL" />
       <updated>1710951844961</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2/9">
+      <option name="closed" value="true" />
+      <created>1711042308435</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711042308435</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -108,6 +199,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="aa" />
-    <option name="LAST_COMMIT_MESSAGE" value="aa" />
+    <MESSAGE value="2/9" />
+    <option name="LAST_COMMIT_MESSAGE" value="2/9" />
   </component>
 </project>
