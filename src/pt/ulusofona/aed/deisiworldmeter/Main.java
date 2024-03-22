@@ -39,17 +39,13 @@ public class Main {
         }
 
         if (tipo == TipoEntidade.INPUT_INVALIDO){
+            ArrayList<String> listaDeStrings = new ArrayList<>();
 
-            /*for(int i = 0; i <= infoCidades.size(); i++){
+            // Adicionando strings ao ArrayList
+            listaDeStrings.add("Primeira string");
+            listaDeStrings.add("Segunda string");
+            listaDeStrings.add("Terceira string");
 
-                String[] elementos = infoCidades.get(i).toString().split(",");
-
-                if(elementos.length != 6){
-                    linhasErradasCidades++;
-                }else{
-                    linhasCertasCidades++;
-                }
-            }*/
 
         }
 
@@ -111,8 +107,10 @@ public class Main {
             reader.readLine();
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(",");
-                for (int i = 0; i < infoPaises.size()-1; i++) {
-                    if(Objects.equals(infoPaises.get(i).id, dados[0])) {
+                int tamanho = infoPaises.size();
+                for (int i = 0; i < infoPaises.size(); i++) {
+                    int id = Integer.parseInt(dados[0]);
+                    if(Objects.equals(infoPaises.get(i).id, id)) {
                         checkIdentificador++;
                         break;
                     }
@@ -171,7 +169,7 @@ public class Main {
             return false;
         }
 
-
+        int tamanho = infoPopulacao.size();
         return true;
     }
 
@@ -179,10 +177,14 @@ public class Main {
         File pasta = new File(".");
             boolean leuBem = parseFiles(pasta);
             if (leuBem) {
+
                 System.out.println("Leitura dos ficheiros realizada com sucesso!");
                 System.out.println(infoPaises.get(0));
                 System.out.println(infoCidades.get(0).toString());
                 System.out.println(infoPopulacao.get(0).toString());
+
+
+
                 // Adicione aqui o código para testar ou manipular os dados lidos
             } else {
                 System.out.println("Falha ao ler os ficheiros.");

@@ -16,9 +16,10 @@ public class Paises {
     public String toString() {
      int countNrMaioresQ700 = 0;
 
+     int tamanho = Main.infoPopulacao.size();
 
         if(id>700){
-            for (int i = 0; i <Main.infoPopulacao.size() ; i++) {
+            for (int i = 0; i < Main.infoPopulacao.size() ; i++) {
                 if(Main.infoPopulacao.get(i).id==this.id){
                     countNrMaioresQ700++;
                 }
