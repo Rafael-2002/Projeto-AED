@@ -12,18 +12,15 @@ public class TestMain {
         int resultado_esperado = 10;
         parseFiles(new File("."));
         int resultado_Atual = Main.infoPaises.size();
-
         assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
 
     }
     @Test
     public  void Test_Nr_Cidades(){
-        int resultado_esperado = 0;
+        int resultado_esperado = 40603;
         parseFiles(new File("."));
         int resultado_Atual = Main.infoCidades.size();
-
         assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
-
     }
    @Test
     public  void Test_ToString_id_maior_Q_700(){
@@ -35,8 +32,12 @@ public class TestMain {
         assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
 
   }
-
-
-
+  @Test
+    public  void Test_Obtem_Cidades(){
+        String resultado_esperado = "andorra la vella | AD | 07 | 20430 | (42.5,1.5166667)";
+        parseFiles(new File("."));
+        String resultado_Atual = Main.infoCidades.toString();
+        assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
+  }
 
 }

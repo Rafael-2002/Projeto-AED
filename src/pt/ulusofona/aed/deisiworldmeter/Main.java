@@ -13,9 +13,14 @@ public class Main {
     static ArrayList<Cidade> infoCidades;
     static ArrayList<Paises> infoPaises;
     static ArrayList<Populacao> infoPopulacao;
+    static ArrayList<String> inputs = new ArrayList<>();
     static int countPopulacaoInvalidos=0 ;
     static int countPaisesInvalidos= 0;
     static int  countCidadesInvalidos = 0;
+    static int  linhaCidades = -1;
+    static int  linhaPais = -1;
+    static int  linhaPopulacao = -1;
+
 
     public static ArrayList<? extends Object> getObjects(TipoEntidade tipo) {
 
@@ -24,10 +29,6 @@ public class Main {
         int[] ArrayCidade = {};
         int[] ArrayPais = {};
         int[] ArrayPopulacao = {};
-
-        int linhasErradasCidades = 0;
-        int linhasCertasCidades = 0;
-        int linhasdoErroCidades = -1;
 
 
         if (tipo == TipoEntidade.PAIS){
@@ -39,14 +40,13 @@ public class Main {
         }
 
         if (tipo == TipoEntidade.INPUT_INVALIDO){
-            ArrayList<String> listaDeStrings = new ArrayList<>();
-
             // Adicionando strings ao ArrayList
-            listaDeStrings.add("Primeira string");
-            listaDeStrings.add("Segunda string");
-            listaDeStrings.add("Terceira string");
+            inputs.add("nome | linhas OK | linhas NOK | primeira linha NOK");
+            inputs.add("paises.csv | " + infoPaises.size() + "| " + countPaisesInvalidos + "| " + linhaPais);
+            inputs.add("cidades.csv | " + infoCidades.size() + "| " + countCidadesInvalidos + "| " + linhaCidades);
+            inputs.add("populacao.csv | " + infoPopulacao.size() + "| " + countPopulacaoInvalidos + "| " + linhaPopulacao);
 
-
+            return inputs;
         }
 
 
@@ -74,6 +74,7 @@ public class Main {
             String linha;
             reader.readLine();
             int checkPaisesRepetidos = 0;
+            int countLinha = 0;
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(",");
                 for (int i = 0; i < infoPaises.size(); i++) {
@@ -92,8 +93,11 @@ public class Main {
                 }else{
 
                    countPaisesInvalidos++;
+                   linhaPais = countLinha;
                 }
                 checkPaisesRepetidos=0;
+
+                countLinha++;
             }
         }catch (IOException e) {
             return false;
@@ -104,6 +108,7 @@ public class Main {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePopulacao))) {
             String linha;
             int checkIdentificador=0;
+            int countLinha = 0;
             reader.readLine();
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(",");
@@ -128,7 +133,10 @@ public class Main {
                 }else{
 
                     countPopulacaoInvalidos++;
+                    linhaPopulacao = countLinha;
                 }
+
+                countLinha++;
             }
         }catch (IOException e) {
             return false;
@@ -138,6 +146,7 @@ public class Main {
         // Lê o arquivo de cidades
         try (BufferedReader reader = new BufferedReader(new FileReader(fileCidades))) {
             String linha;
+            int countLinha = 0;
             // Ignora a primeira linha (títulos das colunas)
             reader.readLine();
             while ((linha = reader.readLine()) != null) {
@@ -151,11 +160,19 @@ public class Main {
                     }
                 }
 
-                if (dados.length == 6 && checkPais > 0 &&!dados[3].isEmpty()) {
+                boolean val = true;
+
+                try {
+                    int numero = Integer.parseInt(dados[2]);
+                } catch (NumberFormatException e) {
+                    val = false;
+                }
+
+                if (dados.length == 6 && checkPais > 0 &&!dados[3].isEmpty() && val) {
                     String alfa2 = dados[0];
                     String cidade = dados[1];
-                    int regiao = Integer.parseInt(dados[2].trim());
-                   // Double populacao = !dados[3].isEmpty() ? Double.parseDouble(dados[3]) : null;
+                    String regiao = dados[2];
+                    // Double populacao = !dados[3].isEmpty() ? Double.parseDouble(dados[3]) : null;
                     Double populacao = Double.parseDouble(dados[3]);
                     Double latitude = Double.parseDouble(dados[4]);
                     Double longitude = Double.parseDouble(dados[5]);
@@ -163,7 +180,10 @@ public class Main {
                     infoCidades.add(cidades);
                 } else {
                     countCidadesInvalidos++;
+                    linhaCidades = countLinha;
                 }
+
+                countLinha++;
             }
         } catch (IOException e) {
             return false;
