@@ -4,12 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b57e8bc6-e24b-48cd-a96e-889b8c472415" name="Changes" comment="4/9">
+    <list default="true" id="b57e8bc6-e24b-48cd-a96e-889b8c472415" name="Changes" comment="2/9">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ficheirosPequenos/cidades.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ficheirosPequenos/paises.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ficheirosPequenos/populacao.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Queries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cidades.csv" beforeDir="false" afterPath="$PROJECT_DIR$/cidades.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paises.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paises.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Cidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Cidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ficheiros/cidades.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ficheirosGrandes/cidades.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ficheiros/paises.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ficheirosGrandes/paises.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ficheiros/populacao.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ficheirosGrandes/populacao.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Paises.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Paises.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/TestMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,30 +50,36 @@
     "JUnit.TestMain.Test_Nr_Cidades.executor": "Run",
     "JUnit.TestMain.Test_Nr_Paises.executor": "Run",
     "JUnit.TestMain.Test_Obtem_Cidades.executor": "Run",
-    "JUnit.TestMain.Test_ToString_id_maior_Q_700.executor": "Debug",
+    "JUnit.TestMain.Test_Pais_Tem_Cidades.executor": "Run",
+    "JUnit.TestMain.Test_ToString_id_maior_Q_700.executor": "Run",
     "JUnit.TestMain.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/35191/Desktop/uni/1anoRepetido/aed2/Projeto"
+    "last_opened_file_path": "C:/Users/35191/Desktop/uni/1anoRepetido/aed2/Projeto/ficheiros pequenos"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\35191\Desktop\uni\1anoRepetido\aed2\Projeto\ficheiros pequenos" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\35191\Desktop\uni\1anoRepetido\aed2\Projeto\ficheiros" />
       <recent name="C:\Users\35191\Desktop\uni\1anoRepetido\aed2\Projeto" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestMain.Test_Obtem_Cidades">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.Main" />
       <module name="Projeto" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.Queries" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -77,7 +91,7 @@
       <module name="Projeto" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.Queries" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,27 +103,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestMain.Test_Nr_Paises" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Projeto" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="pt.ulusofona.aed.deisiworldmeter" />
-      <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.TestMain" />
-      <option name="METHOD_NAME" value="Test_Nr_Paises" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestMain.Test_Obtem_Cidades" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Projeto" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.Queries" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,11 +119,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestMain.Test_Pais_Tem_Cidades" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Projeto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.Queries" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ulusofona.aed.deisiworldmeter" />
+      <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.TestMain" />
+      <option name="METHOD_NAME" value="Test_Pais_Tem_Cidades" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestMain.Test_ToString_id_maior_Q_700" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Projeto" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.Queries" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -139,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestMain.Test_Obtem_Cidades" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.TestMain.Test_Nr_Cidades" />
+        <item itemvalue="JUnit.TestMain.Test_Pais_Tem_Cidades" />
+        <item itemvalue="JUnit.TestMain.Test_Obtem_Cidades" />
         <item itemvalue="JUnit.TestMain.Test_ToString_id_maior_Q_700" />
-        <item itemvalue="JUnit.TestMain.Test_Nr_Paises" />
+        <item itemvalue="JUnit.TestMain.Test_Nr_Cidades" />
       </list>
     </recent_temporary>
   </component>
@@ -151,6 +165,8 @@
     <attachedChunks>
       <set>
         <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-868cef46" />
+        <option value="jdk-20.0.2-azul-20.0.2-4caba194b151-eb49e076" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -179,15 +195,7 @@
       <option name="project" value="LOCAL" />
       <updated>1711042308435</updated>
     </task>
-    <task id="LOCAL-00003" summary="4/9">
-      <option name="closed" value="true" />
-      <created>1711107321740</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1711107321740</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -207,10 +215,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="aa" />
     <MESSAGE value="2/9" />
-    <MESSAGE value="4/9" />
-    <option name="LAST_COMMIT_MESSAGE" value="4/9" />
+    <option name="LAST_COMMIT_MESSAGE" value="2/9" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/TestMain.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="id" language="JAVA" />

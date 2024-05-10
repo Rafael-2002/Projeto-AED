@@ -32,12 +32,20 @@ public class TestMain {
         assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
 
   }
-  @Test
+    @Test
     public  void Test_Obtem_Cidades(){
         String resultado_esperado = "andorra la vella | AD | 07 | 20430 | (42.5,1.5166667)";
         parseFiles(new File("."));
         String resultado_Atual = Main.infoCidades.toString();
         assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
   }
+
+    @Test
+    public  void Test_Pais_Tem_Cidades(){
+        String resultado_esperado = "3";
+        parseFiles(new File("ficheirosPequenos"));
+        String resultado_Atual = String.valueOf(Main.getObjects(TipoEntidade.PAIS).size());
+        assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
+    }
 
 }
