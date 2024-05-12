@@ -238,7 +238,8 @@ public class Main {
                                "GET_DUPLICATE_CITIES <min_population> \n" +
                                "GET_COUNTRIES_GENDER_GAP <min-gender-gap>\n" +
                                "GET_TOP_POPULATION_INCREASE <year-start> <year_end>\n" +
-                               "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES <min-population> GET_CITIES_AT_DISTANCE <distance> <country-name>\n" +
+                               "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES <min-population>\n" +
+                               "GET_CITIES_AT_DISTANCE <distance> <country-name>\n" +
                                "INSERT_CITY <alfa2> <city-name> <region> <population> REMOVE_COUNTRY <country-name>\n" +
                                "HELP\n" +
                                "QUIT");
@@ -318,6 +319,29 @@ public class Main {
                    }
                }
                stringResult = String.valueOf(popTotal);
+
+           case "GET_HISTORY":
+
+               String anoInicio = parts[1];
+               String anoFim = parts[2];
+               String Pais =parts[3];
+               int idPais = 0;
+               for (int paisId = 0; paisId < infoPaises.size(); paisId++) {
+                   if (Objects.equals(infoPaises.get(paisId).nome, Pais)) {
+                       idPais = infoPaises.get(paisId).id;
+                   }else{
+                       idPais = 0;
+                   }
+               }
+               for (int pop = 0; pop < infoPopulacao.size(); pop++) {
+                   if (infoPopulacao.get(pop).id== idPais){
+                       if (infoPopulacao.get(pop).ano >=Integer.parseInt(anoInicio) && infoPopulacao.get(pop).ano <=Integer.parseInt(anoFim)){
+                       stringResult += infoPopulacao.get(pop).ano+":"+(infoPopulacao.get(pop).popMasculina/1000) +"k:" +(infoPopulacao.get(pop).popFeminina/1000) +"k\n";
+                       }
+                   }
+
+               }
+
         }
 
 
