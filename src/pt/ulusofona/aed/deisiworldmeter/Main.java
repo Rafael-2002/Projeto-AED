@@ -207,11 +207,11 @@ public class Main {
         return true;
     }
 
-    public static Queries execute(String comando) {
+    public static Result execute(String comando) {
         String[] s = {"QUIT","HELP","COUNT_CITIES", "GET_CITIES_BY_COUNTRY", "SUM_POPULATIONS", "GET_HISTORY", "GET_MISSING_HISTORY", "GET_MOST_POPULOUS", "GET_TOP_CITIES_BY_COUNTRY", "GET_DUPLICATE_CITIES", "GET_COUNTRIES_GENDER_GAP", "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES", "GET_CITIES_AT_DISTANCE", "GET_CITIES_AT_DISTANCE2", "INSERT_CITY", "REMOVE_COUNTRY"};
         boolean checkcomandovalido = false;
         String stringResult = "";
-        Queries queries = new Queries(false, null, stringResult.toString());
+        Result queries = new Result(false, null, stringResult.toString());
 
 
         String[] parts = comando.split("\\s+");
@@ -322,10 +322,10 @@ public class Main {
 
 
         if (checkcomandovalido) {
-            queries = new Queries(true, null, stringResult);
+            queries = new Result(true, null, stringResult);
         }else{
 
-            queries = new Queries(false, null, "Command not recognized");
+            queries = new Result(false, null, "Command not recognized");
         }
 
         return queries;
@@ -342,7 +342,7 @@ public class Main {
       long end = System.currentTimeMillis();
         System.out.println("Loaded files in " + (end - start) + " ms");
 
-        Queries queries = execute("HELP");
+        Result queries = execute("HELP");
         System.out.println(queries.result);
 
         Scanner in = new Scanner(System.in);
