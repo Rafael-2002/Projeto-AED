@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Main {
@@ -322,12 +320,12 @@ public class Main {
 
            case "GET_HISTORY":
 
-               String anoInicio = parts[1];
-               String anoFim = parts[2];
-               String Pais =parts[3];
+               String anoInicioH = parts[1];
+               String anoFimH = parts[2];
+               String PaisH =parts[3];
                int idPais = 0;
                for (int paisId = 0; paisId < infoPaises.size(); paisId++) {
-                   if (Objects.equals(infoPaises.get(paisId).nome, Pais)) {
+                   if (Objects.equals(infoPaises.get(paisId).nome, PaisH)) {
                        idPais = infoPaises.get(paisId).id;
                    }else{
                        idPais = 0;
@@ -335,12 +333,60 @@ public class Main {
                }
                for (int pop = 0; pop < infoPopulacao.size(); pop++) {
                    if (infoPopulacao.get(pop).id== idPais){
-                       if (infoPopulacao.get(pop).ano >=Integer.parseInt(anoInicio) && infoPopulacao.get(pop).ano <=Integer.parseInt(anoFim)){
+                       if (infoPopulacao.get(pop).ano >=Integer.parseInt(anoInicioH) && infoPopulacao.get(pop).ano <=Integer.parseInt(anoFimH)){
                        stringResult += infoPopulacao.get(pop).ano+":"+(infoPopulacao.get(pop).popMasculina/1000) +"k:" +(infoPopulacao.get(pop).popFeminina/1000) +"k\n";
                        }
                    }
 
                }
+           case "GET_MISSING_HISTORY":
+               String anoInicioMH = parts[1];
+               String anoFimMH = parts[2];
+               ArrayList<Integer> anoInicioFim = new ArrayList<>();
+               for (int i = Integer.parseInt(anoInicioMH); i <= Integer.parseInt(anoFimMH); i++) {
+                   anoInicioFim.add(i);
+               }
+
+               Set<Integer> idPaisesMissing = new HashSet<>();
+               HashMap<Integer, Integer> IdPaisesMH = new HashMap<>();
+               for (int i = 0; i < infoPopulacao.size(); i++) {
+                   IdPaisesMH.put(infoPopulacao.get(i).id, infoPopulacao.get(i).ano);
+               }
+
+               for (int idPaisMH : IdPaisesMH.keySet()) {
+                   boolean isMissing = false; // Assumimos que o país não está faltando inicialmente
+                   for (int year : anoInicioFim) {
+                       if (!IdPaisesMH.containsKey(idPaisMH) || IdPaisesMH.get(idPaisMH) != year) {
+                           isMissing = true;
+                           break;
+                       }
+                   }
+                   if (isMissing) {
+                       idPaisesMissing.add(idPaisMH);
+                   }
+               }
+
+               ArrayList<String> alfa2MH = new ArrayList<>();
+               ArrayList<String> paisesMH = new ArrayList<>();
+               for (int idPaisMH : idPaisesMissing) {
+                   for (int i = 0; i < infoPaises.size(); i++) {
+                       if (infoPaises.get(i).id == idPaisMH && !alfa2MH.contains(infoPaises.get(i).alfa2)) {
+                           alfa2MH.add(infoPaises.get(i).alfa2);
+                           paisesMH.add(infoPaises.get(i).nome);
+                           break; // Saímos do loop assim que encontramos o país correspondente
+                       }
+                   }
+               }
+
+               for (int i = 0; i < paisesMH.size(); i++) {
+                   stringResult+= alfa2MH.get(i)+":"+paisesMH.get(i)+"\n";
+               }
+
+
+
+
+
+
 
         }
 
