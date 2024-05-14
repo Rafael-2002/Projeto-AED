@@ -8,7 +8,7 @@ import java.util.*;
 
 
 public class Main {
-//aa
+    //aa
     static ArrayList<Cidade> infoCidades;
     static ArrayList<Paises> infoPaises;
     static ArrayList<Populacao> infoPopulacao;
@@ -31,7 +31,7 @@ public class Main {
 
 
         if (tipo == TipoEntidade.PAIS){
-           return infoPaises;
+            return infoPaises;
         }
 
         if (tipo == TipoEntidade.CIDADE){
@@ -77,9 +77,9 @@ public class Main {
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(",");
                 for (int i = 0; i < infoPaises.size(); i++) {
-                     if(infoPaises.get(i).id ==Integer.parseInt(dados[0].trim())){
-                         checkPaisesRepetidos++;
-                     };
+                    if(infoPaises.get(i).id ==Integer.parseInt(dados[0].trim())){
+                        checkPaisesRepetidos++;
+                    };
                 }
                 boolean checkpaistemcidades = false;
                 int i = 0;
@@ -100,8 +100,8 @@ public class Main {
                     infoPaises.add(pais);
                 }else{
 
-                   countPaisesInvalidos++;
-                   linhaPais = countLinha;
+                    countPaisesInvalidos++;
+                    linhaPais = countLinha;
                 }
                 checkPaisesRepetidos=0;
 
@@ -174,7 +174,7 @@ public class Main {
 
                 try {
                     if (dados.length >= 3){
-                    Double numero = Double.parseDouble(dados[2]);
+                        Double numero = Double.parseDouble(dados[2]);
                     }
                 } catch (NumberFormatException e) {
                     val = false;
@@ -222,174 +222,218 @@ public class Main {
                 break;
             }
         }
-       switch (parts[0]) {
-           case "HELP":
-               System.out.println(
-                       "Commands available:\n" +
-                               "COUNT_CITIES <min_population>\n" +
-                               "GET_CITIES_BY_COUNTRY <num-results> <country-name>\n" +
-                               "SUM_POPULATIONS <countries-List>\n" +
-                               "GET_HISTORY <year-start> <year-end> <country_name>\n" +
-                               "GET_MISSING_HISTORY <year-start> <year-end>\n" +
-                               "GET_MOST_POPULOUS <num-results>\n" +
-                               "GET_TOP_CITIES_BY_COUNTRY <num-results> <country-name> \n" +
-                               "GET_DUPLICATE_CITIES <min_population> \n" +
-                               "GET_COUNTRIES_GENDER_GAP <min-gender-gap>\n" +
-                               "GET_TOP_POPULATION_INCREASE <year-start> <year_end>\n" +
-                               "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES <min-population>\n" +
-                               "GET_CITIES_AT_DISTANCE <distance> <country-name>\n" +
-                               "INSERT_CITY <alfa2> <city-name> <region> <population> REMOVE_COUNTRY <country-name>\n" +
-                               "HELP\n" +
-                               "QUIT");
-               stringResult = "";
-               break;
-           case "COUNT_CITIES":
-               int countCities = 0;
-               for (int cities = 0; cities < infoCidades.size(); cities++) {
-                   if (infoCidades.get(cities).populacao >= Double.parseDouble(parts[1])) {
-                       countCities++;
+        switch (parts[0]) {
+            case "HELP":
+                System.out.println(
+                        "Commands available:\n" +
+                                "COUNT_CITIES <min_population>\n" +
+                                "GET_CITIES_BY_COUNTRY <num-results> <country-name>\n" +
+                                "SUM_POPULATIONS <countries-List>\n" +
+                                "GET_HISTORY <year-start> <year-end> <country_name>\n" +
+                                "GET_MISSING_HISTORY <year-start> <year-end>\n" +
+                                "GET_MOST_POPULOUS <num-results>\n" +
+                                "GET_TOP_CITIES_BY_COUNTRY <num-results> <country-name> \n" +
+                                "GET_DUPLICATE_CITIES <min_population> \n" +
+                                "GET_COUNTRIES_GENDER_GAP <min-gender-gap>\n" +
+                                "GET_TOP_POPULATION_INCREASE <year-start> <year_end>\n" +
+                                "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES <min-population>\n" +
+                                "GET_CITIES_AT_DISTANCE <distance> <country-name>\n" +
+                                "INSERT_CITY <alfa2> <city-name> <region> <population>\n" +
+                                "REMOVE_COUNTRY <country-name>\n" +
+                                "HELP\n" +
+                                "QUIT");
+                stringResult = "";
+                break;
+            case "COUNT_CITIES":
+                int countCities = 0;
+                for (int cities = 0; cities < infoCidades.size(); cities++) {
+                    if (infoCidades.get(cities).populacao >= Double.parseDouble(parts[1])) {
+                        countCities++;
 
-                   }
-               }
-               stringResult = String.valueOf(countCities);
-               break;
+                    }
+                }
+                stringResult = String.valueOf(countCities);
+                break;
 
-           case "GET_CITIES_BY_COUNTRY":
-               int numResultados = Integer.parseInt(parts[1]);
-               String nomePais = parts[2];
-               String alfa2 = "";
-               int count = 0;
-               ArrayList<String> nomesPaises = new ArrayList<>();
-               int checkcount = 0;
-               for (int i = 0; i < infoPaises.size(); i++) {
-                   if(Objects.equals(infoPaises.get(i).nome, nomePais)){
-                   checkcount++;
-                   }
+            case "GET_CITIES_BY_COUNTRY":
+                int numResultados = Integer.parseInt(parts[1]);
+                String nomePais = parts[2];
+                String alfa2 = "";
+                int count = 0;
+                ArrayList<String> nomesPaises = new ArrayList<>();
+                int checkcount = 0;
+                for (int i = 0; i < infoPaises.size(); i++) {
+                    if(Objects.equals(infoPaises.get(i).nome, nomePais)){
+                        checkcount++;
+                    }
 
-               }
-               if (checkcount>0) {
-
-
-                   for (int j = 0; j < infoPaises.size(); j++) {
-                       if (Objects.equals(infoPaises.get(j).nome, nomePais)) {
-                           alfa2 = String.valueOf(infoPaises.get(j).alfa2);
-                           break;
-                       }
-                   }
-
-                   for (int j = 0; j < infoCidades.size(); j++) {
-                       if (Objects.equals(infoCidades.get(j).alfa2, alfa2)) {
-                           count++;
-                           nomesPaises.add(infoCidades.get(j).cidade);
-                       }
-                       if (String.valueOf(count).equals(parts[1])) {
-
-                           break;
-                       }
-                   }
-                   for (int j = 0; j < nomesPaises.size(); j++) {
-                       stringResult+=nomesPaises.get(j)+"\n";
-                   }
-
-               }else{
-                   stringResult = "Pais invalido: "+nomePais;
-               }
-
-           case "SUM_POPULATIONS":
-               String[] partsPaises = parts[1].split(",");
-               long popTotal=0;
-               ArrayList<Integer> alfa2array = new ArrayList<>();
-               for (int i = 0; i < partsPaises.length; i++) {
-               for (int paises = 0; paises < infoPaises.size(); paises++) {
+                }
+                if (checkcount>0) {
 
 
-                   if (Objects.equals(infoPaises.get(paises).nome, partsPaises[i])) {
-                       alfa2array.add((infoPaises.get(paises).id));
-                       break;
-                   }
-                   }
-               }
-               for (int i = 0; i < infoPopulacao.size(); i++) {
-                   for (int j = 0; j < alfa2array.size(); j++) {
-                       if(infoPopulacao.get(i).id == alfa2array.get(j)){
-                          popTotal+= infoPopulacao.get(i).popFeminina +infoPopulacao.get(i).popMasculina;
-                       }
-                   }
-               }
-               stringResult = String.valueOf(popTotal);
+                    for (int j = 0; j < infoPaises.size(); j++) {
+                        if (Objects.equals(infoPaises.get(j).nome, nomePais)) {
+                            alfa2 = String.valueOf(infoPaises.get(j).alfa2);
+                            break;
+                        }
+                    }
 
-           case "GET_HISTORY":
+                    for (int j = 0; j < infoCidades.size(); j++) {
+                        if (Objects.equals(infoCidades.get(j).alfa2, alfa2)) {
+                            count++;
+                            nomesPaises.add(infoCidades.get(j).cidade);
+                        }
+                        if (String.valueOf(count).equals(parts[1])) {
 
-               String anoInicioH = parts[1];
-               String anoFimH = parts[2];
-               String PaisH =parts[3];
-               int idPais = 0;
-               for (int paisId = 0; paisId < infoPaises.size(); paisId++) {
-                   if (Objects.equals(infoPaises.get(paisId).nome, PaisH)) {
-                       idPais = infoPaises.get(paisId).id;
-                   }else{
-                       idPais = 0;
-                   }
-               }
-               for (int pop = 0; pop < infoPopulacao.size(); pop++) {
-                   if (infoPopulacao.get(pop).id== idPais){
-                       if (infoPopulacao.get(pop).ano >=Integer.parseInt(anoInicioH) && infoPopulacao.get(pop).ano <=Integer.parseInt(anoFimH)){
-                       stringResult += infoPopulacao.get(pop).ano+":"+(infoPopulacao.get(pop).popMasculina/1000) +"k:" +(infoPopulacao.get(pop).popFeminina/1000) +"k\n";
-                       }
-                   }
+                            break;
+                        }
+                    }
+                    for (int j = 0; j < nomesPaises.size(); j++) {
+                        stringResult+=nomesPaises.get(j)+"\n";
+                    }
 
-               }
-           case "GET_MISSING_HISTORY":
-               String anoInicioMH = parts[1];
-               String anoFimMH = parts[2];
-               ArrayList<Integer> anoInicioFim = new ArrayList<>();
-               for (int i = Integer.parseInt(anoInicioMH); i <= Integer.parseInt(anoFimMH); i++) {
-                   anoInicioFim.add(i);
-               }
-
-               Set<Integer> idPaisesMissing = new HashSet<>();
-               HashMap<Integer, Integer> IdPaisesMH = new HashMap<>();
-               for (int i = 0; i < infoPopulacao.size(); i++) {
-                   IdPaisesMH.put(infoPopulacao.get(i).id, infoPopulacao.get(i).ano);
-               }
-
-               for (int idPaisMH : IdPaisesMH.keySet()) {
-                   boolean isMissing = false; // Assumimos que o país não está faltando inicialmente
-                   for (int year : anoInicioFim) {
-                       if (!IdPaisesMH.containsKey(idPaisMH) || IdPaisesMH.get(idPaisMH) != year) {
-                           isMissing = true;
-                           break;
-                       }
-                   }
-                   if (isMissing) {
-                       idPaisesMissing.add(idPaisMH);
-                   }
-               }
-
-               ArrayList<String> alfa2MH = new ArrayList<>();
-               ArrayList<String> paisesMH = new ArrayList<>();
-               for (int idPaisMH : idPaisesMissing) {
-                   for (int i = 0; i < infoPaises.size(); i++) {
-                       if (infoPaises.get(i).id == idPaisMH && !alfa2MH.contains(infoPaises.get(i).alfa2)) {
-                           alfa2MH.add(infoPaises.get(i).alfa2);
-                           paisesMH.add(infoPaises.get(i).nome);
-                           break; // Saímos do loop assim que encontramos o país correspondente
-                       }
-                   }
-               }
-
-               for (int i = 0; i < paisesMH.size(); i++) {
-                   stringResult+= alfa2MH.get(i)+":"+paisesMH.get(i)+"\n";
-               }
+                }else{
+                    stringResult = "Pais invalido: "+nomePais;
+                }
+                break;
 
 
+            case "SUM_POPULATIONS":
+                String[] paisesParaSomar = parts[1].split(",");
+                long populacaoTotal = 0;
+
+                for (String nomePaisS : paisesParaSomar) {
+                    for (Paises pais : infoPaises) {
+                        if (pais.nome.equalsIgnoreCase(nomePaisS.trim())) {
+                            for (Populacao populacao : infoPopulacao) {
+                                if (populacao.id == pais.id && populacao.ano == 2024) {
+                                    populacaoTotal += populacao.popMasculina + populacao.popFeminina;
+                                    break; // Saia do loop interno, pois já encontramos o país correspondente
+                                }
+                            }
+                            break; // Saia do loop externo, pois já encontramos o país correspondente
+                        }
+                    }
+                }
+                if(populacaoTotal == 0){
+                    stringResult = "Pais invalido: Nowhere";
+                }else {
+                    stringResult = String.valueOf(populacaoTotal);
+                }
+                break;
+
+            case "GET_HISTORY":
+                String anoInicioH = parts[1];
+                String anoFimH = parts[2];
+                String PaisH = parts[3];
+                int idPaisH = 0;
+                for (int paisIdH = 0; paisIdH < infoPaises.size(); paisIdH++) {
+                    if (Objects.equals(infoPaises.get(paisIdH).nome, PaisH)) {
+                        idPaisH = infoPaises.get(paisIdH).id;
+                        break; // Achou o país, pode sair do loop
+                    }
+                }
+                for (int popH = 0; popH < infoPopulacao.size(); popH++) {
+                    if (infoPopulacao.get(popH).id == idPaisH) {
+                        if (infoPopulacao.get(popH).ano >= Integer.parseInt(anoInicioH) && infoPopulacao.get(popH).ano <= Integer.parseInt(anoFimH)) {
+                            stringResult += infoPopulacao.get(popH).ano + ":" + (infoPopulacao.get(popH).popMasculina / 1000) + "k:" + (infoPopulacao.get(popH).popFeminina / 1000) + "k\n";
+                        }
+                    }
+                }
+                break;
+            case "GET_MISSING_HISTORY":
+                String anoInicioMH = parts[1];
+                String anoFimMH = parts[2];
+                ArrayList<Integer> anoInicioFim = new ArrayList<>();
+                for (int i = Integer.parseInt(anoInicioMH); i <= Integer.parseInt(anoFimMH); i++) {
+                    anoInicioFim.add(i);
+                }
+
+                Set<Integer> idPaisesMissing = new HashSet<>();
+                HashMap<Integer, List<Integer>> idPaisesMH = new HashMap<>();
+
+                for (Populacao populacao : infoPopulacao) {
+                    if (!idPaisesMH.containsKey(populacao.id)) {
+                        idPaisesMH.put(populacao.id, new ArrayList<>());
+                    }
+                    idPaisesMH.get(populacao.id).add(populacao.ano);
+                }
 
 
+                for (Map.Entry<Integer, List<Integer>> entry : idPaisesMH.entrySet()) {
+                    int idPais = entry.getKey();
+                    List<Integer> anosPais = entry.getValue();
+                    for (int ano : anoInicioFim) {
+                        if (!anosPais.contains(ano)) {
+                            idPaisesMissing.add(idPais);
+                            break;
+                        }
+                    }
+                }
+
+                ArrayList<String> alfa2MH = new ArrayList<>();
+                ArrayList<String> paisesMH = new ArrayList<>();
+                for (int idPaisMH : idPaisesMissing) {
+                    for (Paises pais : infoPaises) {
+                        if (pais.id == idPaisMH && !alfa2MH.contains(pais.alfa2)) {
+                            alfa2MH.add(pais.alfa2);
+                            paisesMH.add(pais.nome);
+                            break; // Exit the loop once we find the corresponding country
+                        }
+                    }
+                }
+
+                if (idPaisesMissing.isEmpty()){
+                 stringResult = "Sem resultados";
+                }else {
+                    for (int i = 0; i < paisesMH.size(); i++) {
+                        stringResult += alfa2MH.get(i) + ":" + paisesMH.get(i) + "\n";
+                    }
+                }
+                break;
+
+            case "INSERT_CITY":
+                String alfa2IS = parts[1];
+                String nomeCidadeIS = parts[2];
+                String regiaoIS = parts[3];
+                String populacaoIS = parts[4];
+
+                boolean checkPaisExisteIS = false;
 
 
+                for (Paises infoPaisIC : infoPaises) {
+                    if (infoPaisIC.alfa2.equals(alfa2IS)) {
+                        checkPaisExisteIS = true;
+                        break;
+                    }
+                }
 
+                if (!checkPaisExisteIS) {
+                    stringResult = "Pais invalido";
+                } else {
+                    // Country exists, so create and add the city
+                    Cidade cidadeIS = new Cidade(alfa2IS, nomeCidadeIS, regiaoIS, Double.parseDouble(populacaoIS));
+                    infoCidades.add(cidadeIS);
+                    stringResult = "Inserido com sucesso";
+                }
+                break;
+            case "REMOVE_COUNTRY":
+                String nomePaisRC = parts[1];
+                boolean checkPaisExisteRC = false;
+                for (int i = 0; i < infoPaises.size(); i++) {
+                    if (infoPaises.get(i).nome.equals(nomePaisRC)) {
+                        checkPaisExisteRC = true;
+                        infoPaises.remove(i);
+                        i--; // Adjust the index after removing the element
+                    }
+                }
+                if (!checkPaisExisteRC) {
+                    stringResult = "Pais invalido";
+                } else {
+                    stringResult = "Removido com sucesso";
+                }
+                break;
         }
-
 
         if (checkcomandovalido) {
             queries = new Result(true, null, stringResult);
@@ -409,7 +453,7 @@ public class Main {
         if (!parselk) {
             System.out.println("Error loading Files");
         }
-      long end = System.currentTimeMillis();
+        long end = System.currentTimeMillis();
         System.out.println("Loaded files in " + (end - start) + " ms");
 
         Result queries = execute("HELP");
@@ -436,5 +480,5 @@ public class Main {
         }while(line!= null && !line.equals("QUIT"));
 
 
-        }
+    }
 }
