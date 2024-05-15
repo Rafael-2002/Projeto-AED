@@ -47,5 +47,11 @@ public class TestMain {
         String resultado_Atual = String.valueOf(Main.getObjects(TipoEntidade.PAIS).size());
         assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
     }
+    public  void Test_Gender(){
+        String resultado_esperado = "3";
+        parseFiles(new File("ficheirosPequenos"));
+        String resultado_Atual = String.valueOf(Main.getObjects(TipoEntidade.PAIS).size());
+        assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
+    }
 
 }
