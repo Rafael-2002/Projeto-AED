@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -330,7 +331,18 @@ public class Main {
             case "SUM_POPULATIONS":
                 String[] paisesParaSomar = parts[1].split(",");
                 long populacaoTotal = 0;
-
+                ArrayList<String> paisesInvalidosSP = new ArrayList<>();
+                ArrayList<String> paisesSP = new ArrayList<>();
+                for (int i = 0; i < infoPaises.size(); i++) {
+                    paisesSP.add(infoPaises.get(i).nome); // Using add() instead of set()
+                }
+                boolean checkPaisesExistem = false;
+                for (int i = 0; i < paisesParaSomar.length; i++) {
+                    if (!paisesSP.contains(paisesParaSomar[i])){
+                        checkPaisesExistem = true;
+                        paisesInvalidosSP.add(paisesParaSomar[i]);
+                    }
+                }
                 for (String nomePaisS : paisesParaSomar) {
                     for (Paises pais : infoPaises) {
                         if (pais.nome.equalsIgnoreCase(nomePaisS.trim())) {
@@ -344,8 +356,12 @@ public class Main {
                         }
                     }
                 }
-                if (populacaoTotal == 0) {
-                    stringResult = "Pais invalido: Nowhere";
+                if (populacaoTotal == 0 || checkPaisesExistem) {
+
+                    stringResult = "Pais invalido: ";
+                    for (int i = 0; i < paisesInvalidosSP.size(); i++) {
+                        stringResult+=paisesInvalidosSP.get(i);
+                    }
                 } else {
                     stringResult = String.valueOf(populacaoTotal);
                 }
@@ -507,7 +523,7 @@ public class Main {
                     anosPI.add(i);
                 }
 
-                HashMap<String, ArrayList<Double>> novoPaisesPopIncrease = new HashMap<>();
+                TreeMap<Double, String[]> topIncreases = new TreeMap<>(Collections.reverseOrder());
 
                 for (int i = 0; i < anosPI.size() - 1; i++) {
                     int year1 = anosPI.get(i);
@@ -516,14 +532,14 @@ public class Main {
                         if (pop1.ano == year1) {
                             for (Populacao pop2 : infoPopulacao) {
                                 if (pop2.ano == year2 && pop1.id == pop2.id) {
+
                                     double increase = formulaPopIcrease(pop2.popMasculina + pop2.popFeminina, pop1.popMasculina + pop1.popFeminina);
-                                    if (increase > 0) {
-                                        String countryName = getCountryNameById(pop1.id);
-                                        String key = countryName + ":" + year1 + "-" + year2;
-                                        if (!novoPaisesPopIncrease.containsKey(key)) {
-                                            novoPaisesPopIncrease.put(key, new ArrayList<>());
+                                    if (increase>0) {
+                                        String[] data = {String.valueOf(year1), String.valueOf(year2), getCountryNameById(pop1.id)};
+                                        topIncreases.put(increase, data);
+                                        if (topIncreases.size() > 5) {
+                                            topIncreases.pollLastEntry();
                                         }
-                                        novoPaisesPopIncrease.get(key).add(increase);
                                     }
                                 }
                             }
@@ -531,42 +547,22 @@ public class Main {
                     }
                 }
 
-                // Sort the increases for each country
-                for (ArrayList<Double> increases : novoPaisesPopIncrease.values()) {
-                    Collections.sort(increases, Collections.reverseOrder());
-                }
-
-                // Format the output for the top five increases
+                // Format the output
                 StringBuilder result = new StringBuilder();
-                List<Map.Entry<String, ArrayList<Double>>> sortedEntries = new ArrayList<>(novoPaisesPopIncrease.entrySet());
-                sortedEntries.sort(Comparator.comparingDouble((Map.Entry<String, ArrayList<Double>> e) -> {
-                    double max = 0;
-                    for (double increase : e.getValue()) {
-                        max = Math.max(max, increase);
-                    }
-                    return max;
-                }).reversed());
 
-                int countPI = 0;
-                DecimalFormat decimalFormat = new DecimalFormat("0.00");
-                for (Map.Entry<String, ArrayList<Double>> entry : sortedEntries) {
-                    if (countPI >= 5) {
-                        break;
-                    }
-                    String[] keyParts = entry.getKey().split(":");
-                    String countryName = keyParts[0];
-                    String years = keyParts[1];
-                    ArrayList<Double> increases = entry.getValue();
-                    for (double increase : increases) {
-                        if (countPI >= 5) {
-                            break;
-                        }
-                        result.append(countryName).append(":").append(years).append(":").append(decimalFormat.format(increase)).append("%\n");
-                        countPI++;
-                    }
+                DecimalFormat df = new DecimalFormat("0.00");
+                for (Map.Entry<Double, String[]> entry : topIncreases.entrySet()) {
+                    double increase = entry.getKey();
+                    String[] data = entry.getValue();
+                    result.append(data[2]).append(":").append(data[0]).append("-").append(data[1]).append(":").append(df.format(increase)).append("%").append("\n");
+
                 }
                 stringResult = result.toString();
                 break;
+
+
+
+
 
 
 
