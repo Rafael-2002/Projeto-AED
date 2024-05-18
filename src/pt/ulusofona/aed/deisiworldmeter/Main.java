@@ -135,7 +135,7 @@ public class Main {
         }
 
 
-        // Lê o arquivo de população
+        // LÃª o arquivo de populaÃ§Ã£o
         try (BufferedReader reader = new BufferedReader(new FileReader(filePopulacao))) {
             String linha;
             int checkIdentificador=0;
@@ -176,11 +176,11 @@ public class Main {
         }
 
 
-        // Lê o arquivo de cidades
+        // LÃª o arquivo de cidades
         try (BufferedReader reader = new BufferedReader(new FileReader(fileCidades))) {
             String linha;
             int countLinha = 0;
-            // Ignora a primeira linha (títulos das colunas)
+            // Ignora a primeira linha (tÃ­tulos das colunas)
             reader.readLine();
             while ((linha = reader.readLine()) != null) {
                 String[] dados = linha.split(",");
@@ -236,10 +236,10 @@ public class Main {
         return ""; // Return an empty string if the country ID is not found
     }
     public static Result execute(String comando) {
-        String[] s = {"QUIT", "HELP", "COUNT_CITIES", "GET_CITIES_BY_COUNTRY", "SUM_POPULATIONS", "GET_HISTORY","GET_TOP_POPULATION_INCREASE", "GET_MISSING_HISTORY", "GET_MOST_POPULOUS", "GET_TOP_CITIES_BY_COUNTRY", "GET_DUPLICATE_CITIES", "GET_COUNTRIES_GENDER_GAP", "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES", "GET_CITIES_AT_DISTANCE", "GET_CITIES_AT_DISTANCE2", "INSERT_CITY", "REMOVE_COUNTRY"};
-        boolean checkcomandovalido = false;
+        String[] s = {"QUIT", "HELP", "COUNT_CITIES", "GET_CITIES_BY_COUNTRY", "SUM_POPULATIONS", "GET_HISTORY", "GET_TOP_POPULATION_INCREASE", "GET_MISSING_HISTORY", "GET_MOST_POPULOUS", "GET_TOP_CITIES_BY_COUNTRY", "GET_DUPLICATE_CITIES", "GET_COUNTRIES_GENDER_GAP", "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES", "GET_CITIES_AT_DISTANCE", "GET_CITIES_AT_DISTANCE2", "INSERT_CITY", "REMOVE_COUNTRY"};
+        boolean checkComandoValido = false;
         String stringResult = "";
-        Result queries = new Result(false, null, stringResult.toString());
+        Result queries = new Result(false, null, stringResult);
 
 
         String[] parts = comando.split("\\s+");
@@ -248,10 +248,15 @@ public class Main {
 
         for (String validCommand : s) {
             if (command.equals(validCommand)) {
-                checkcomandovalido = true;
+                checkComandoValido = true;
                 break;
             }
         }
+        HashMap<Integer, String> IdPaises = new HashMap<>();
+        for (int i = 0; i < infoPaises.size(); i++) {
+            IdPaises.put(infoPaises.get(i).id, infoPaises.get(i).nome);
+        }
+
         switch (parts[0]) {
             case "HELP":
                 System.out.println(
@@ -338,7 +343,7 @@ public class Main {
                 }
                 boolean checkPaisesExistem = false;
                 for (int i = 0; i < paisesParaSomar.length; i++) {
-                    if (!paisesSP.contains(paisesParaSomar[i])){
+                    if (!paisesSP.contains(paisesParaSomar[i])) {
                         checkPaisesExistem = true;
                         paisesInvalidosSP.add(paisesParaSomar[i]);
                     }
@@ -349,10 +354,10 @@ public class Main {
                             for (Populacao populacao : infoPopulacao) {
                                 if (populacao.id == pais.id && populacao.ano == 2024) {
                                     populacaoTotal += populacao.popMasculina + populacao.popFeminina;
-                                    break; // Saia do loop interno, pois já encontramos o país correspondente
+                                    break; // Saia do loop interno, pois jÃ¡ encontramos o paÃ­s correspondente
                                 }
                             }
-                            break; // Saia do loop externo, pois já encontramos o país correspondente
+                            break; // Saia do loop externo, pois jÃ¡ encontramos o paÃ­s correspondente
                         }
                     }
                 }
@@ -360,7 +365,7 @@ public class Main {
 
                     stringResult = "Pais invalido: ";
                     for (int i = 0; i < paisesInvalidosSP.size(); i++) {
-                        stringResult+=paisesInvalidosSP.get(i);
+                        stringResult += paisesInvalidosSP.get(i);
                     }
                 } else {
                     stringResult = String.valueOf(populacaoTotal);
@@ -375,7 +380,7 @@ public class Main {
                 for (int paisIdH = 0; paisIdH < infoPaises.size(); paisIdH++) {
                     if (Objects.equals(infoPaises.get(paisIdH).nome, PaisH)) {
                         idPaisH = infoPaises.get(paisIdH).id;
-                        break; // Achou o país, pode sair do loop
+                        break; // Achou o paÃ­s, pode sair do loop
                     }
                 }
                 for (int popH = 0; popH < infoPopulacao.size(); popH++) {
@@ -481,36 +486,21 @@ public class Main {
 
 
             case "GET_COUNTRIES_GENDER_GAP":
-                String genderGap = parts[1];
-                HashMap<Integer, Double> PaisesGenderGap = new HashMap<>();
-                HashMap<String, Double> novoPaisesGenderGap = new HashMap<>();
+                String genderPI = parts[1];
 
-                // Calculate gender gap and populate the map
+
+                HashMap<String, Double> genderGapPI = new HashMap<>();
                 for (int i = 0; i < infoPopulacao.size(); i++) {
                     if (infoPopulacao.get(i).ano == 2024) {
-                        double gap = formulaGenderGap(infoPopulacao.get(i).popMasculina, infoPopulacao.get(i).popFeminina);
-                        if (Double.parseDouble(genderGap) <= gap) {
-                            PaisesGenderGap.put(infoPopulacao.get(i).id, gap);
+
+                        if (formulaGenderGap(infoPopulacao.get(i).popMasculina, infoPopulacao.get(i).popFeminina) <= Integer.parseInt(genderPI)) {
+                            genderGapPI.put(IdPaises.get(infoPopulacao.get(i).id), formulaGenderGap(infoPopulacao.get(i).popMasculina, infoPopulacao.get(i).popFeminina));
                         }
                     }
                 }
 
-                // Map country names to gender gaps
-                for (Integer key : PaisesGenderGap.keySet()) {
-                    for (int i = 0; i < infoPaises.size(); i++) {
-                        if (key == infoPaises.get(i).id) {
-                            novoPaisesGenderGap.put(infoPaises.get(i).nome, PaisesGenderGap.get(key));
-                        }
-                    }
-                }
-
-                // Format the output
-                if (novoPaisesGenderGap.isEmpty()) {
-                    stringResult = "Sem resultados";
-                } else {
-                    for (String key : novoPaisesGenderGap.keySet()) {
-                        stringResult += key + ":" + novoPaisesGenderGap.get(key) + "\n";
-                    }
+                for (String key : genderGapPI.keySet()) {
+                    stringResult += key + ":" + genderGapPI.get(key);
                 }
                 break;
 
@@ -526,19 +516,21 @@ public class Main {
                 TreeMap<Double, String[]> topIncreases = new TreeMap<>(Collections.reverseOrder());
 
                 for (int i = 0; i < anosPI.size() - 1; i++) {
-                    int year1 = anosPI.get(i);
-                    int year2 = anosPI.get(i + 1);
-                    for (Populacao pop1 : infoPopulacao) {
-                        if (pop1.ano == year1) {
-                            for (Populacao pop2 : infoPopulacao) {
-                                if (pop2.ano == year2 && pop1.id == pop2.id) {
+                    for (int j = 0; j < anosPI.size() ; j++) {
+                        int year1 = anosPI.get(i);
+                        int year2 = anosPI.get(j);
+                        for (Populacao pop1 : infoPopulacao) {
+                            if (pop1.ano == year1) {
+                                for (Populacao pop2 : infoPopulacao) {
+                                    if (pop2.ano == year2 && pop1.id == pop2.id) {
 
-                                    double increase = formulaPopIcrease(pop2.popMasculina + pop2.popFeminina, pop1.popMasculina + pop1.popFeminina);
-                                    if (increase>0) {
-                                        String[] data = {String.valueOf(year1), String.valueOf(year2), getCountryNameById(pop1.id)};
-                                        topIncreases.put(increase, data);
-                                        if (topIncreases.size() > 5) {
-                                            topIncreases.pollLastEntry();
+                                        double increase = formulaPopIcrease(pop2.popMasculina + pop2.popFeminina, pop1.popMasculina + pop1.popFeminina);
+                                        if (increase > 0) {
+                                            String[] data = {String.valueOf(year1), String.valueOf(year2), getCountryNameById(pop1.id)};
+                                            topIncreases.put(increase, data);
+                                            if (topIncreases.size() > 5) {
+                                                topIncreases.pollLastEntry();
+                                            }
                                         }
                                     }
                                 }
@@ -559,15 +551,6 @@ public class Main {
                 }
                 stringResult = result.toString();
                 break;
-
-
-
-
-
-
-
-
-
 //            case "GET_TOP_POPULATION_INCREASE":
 //                String anoInicioPI = parts[1];
 //                String anoFimPI = parts[2];
@@ -628,15 +611,8 @@ public class Main {
 //                break;
 
 
-
-
-
-
-
-
-
         }
-        if (checkcomandovalido) {
+        if (checkComandoValido) {
             queries = new Result(true, null, stringResult);
         } else {
 
