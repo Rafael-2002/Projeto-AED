@@ -32,4 +32,13 @@ public class Cidade {
     public String toString() {
         return cidade + " | " + alfa2.toUpperCase() + " | " + regiao + " | "+ populacao.intValue() + " | (" + latitude + "," + longitude+")";
     }
+
+
+    public Double getPopulacao() {
+        return populacao;
+    }
+
+    public String getFormattedPopulacao() {
+        return (int) (populacao / 1000) + "k";
+    }
 }
