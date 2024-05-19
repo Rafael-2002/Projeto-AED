@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.math.BigDecimal;
+
+import static java.awt.geom.Point2D.distance;
 
 
 public class Main {
@@ -392,6 +395,172 @@ public class Main {
                 }
                 break;
 
+
+
+
+            case "GET_MOST_POPULOUS":
+                int numCidades = Integer.parseInt(parts[1]);
+                ArrayList<String> nomesCidades = new ArrayList<>();
+                ArrayList<Cidade> infoCidadesOrdenado = ordenarCidadesQuickSort(infoCidades.clone(), 0, infoCidades.size());
+
+
+                for(int i = 0; i <infoCidadesOrdenado.size();i++){
+                    if(numCidades <= 0){
+                        break;
+                    }
+                    if(!nomesCidades.contains(infoCidadesOrdenado.get(i).alfa2)){
+                        nomesCidades.add(infoCidadesOrdenado.get(i).alfa2);
+                        String pais = "";
+                        for(int y = 0; y < infoPaises.size(); y++){
+                            if(infoCidadesOrdenado.get(i).alfa2.equals(infoPaises.get(y).alfa2)){
+                                pais = infoPaises.get(y).nome;
+                                break;
+                            }
+                        }
+
+                        String scientificNotation = String.valueOf(infoCidadesOrdenado.get(i).populacao);
+                        BigDecimal bigDecimal = new BigDecimal(scientificNotation);
+                        String decimalForm = bigDecimal.toPlainString();
+                        String withoutDecimalZero = decimalForm.replace(".0", "");
+
+                        numCidades--;
+                        stringResult += pais + ":"+ infoCidadesOrdenado.get(i).cidade + ":" + withoutDecimalZero + "\n";
+                    }
+                }
+
+                break;
+
+
+            case "GET_TOP_CITIES_BY_COUNTRY":
+                String pais = parts[2];
+                ArrayList<Cidade> cidadesPais = new ArrayList<>();
+                String alfa2Pais = "";
+                int numeroPaises = Integer.parseInt(parts[1]);
+                int x2 = 1;
+
+
+
+
+                for(int i = 0; i < infoPaises.size(); i++){
+                    if(parts[2].equals(infoPaises.get(i).nome)){
+                        alfa2Pais = infoPaises.get(i).alfa2;
+                        break;
+                    }
+                }
+
+                for(int i = 0; i < infoCidades.size();i++){
+                    if(infoCidades.get(i).alfa2.equals(alfa2Pais)){
+                        cidadesPais.add(infoCidades.get(i));
+                    }
+                }
+
+                ArrayList<Cidade> infoCidadesOrdenado2 = ordenarCidadesQuickSort(cidadesPais.clone(), 0, cidadesPais.size());
+
+                for(int i = 0; i < infoCidadesOrdenado2.size(); i++){
+                    while (x2 < infoCidadesOrdenado2.size()){
+
+                        int popx2 = (int) (infoCidadesOrdenado2.get(x2).populacao / 1000);
+                        int popi = (int) (infoCidadesOrdenado2.get(i).populacao / 1000);
+
+                        if(popx2 == popi){
+                            int comparison = infoCidadesOrdenado2.get(i).cidade.compareTo(infoCidadesOrdenado2.get(x2).cidade);
+
+                            if (comparison > 0) {
+                                Collections.swap(infoCidadesOrdenado2, x2, i);
+                            }
+                        }
+                        x2++;
+                    }
+                    x2 = i + 1;
+                }
+
+
+                for (int i = 0; i < numeroPaises; i++) {
+                    stringResult += infoCidadesOrdenado2.get(i).cidade + ":" + infoCidadesOrdenado2.get(i).getFormattedPopulacao() + "\n";
+                }
+
+                break;
+
+
+            case "GET_DUPLICATE_CITIES":
+
+                ArrayList<Cidade> cidadesRepetidas = new ArrayList<>();
+                ArrayList<String> cidadesOriginais = new ArrayList<>();
+                int numeroPop = Integer.parseInt(parts[1]);
+                String nomeP = "";
+
+                for(int i = 0; i < infoCidades.size(); i++){
+                    if(cidadesOriginais.contains(infoCidades.get(i).cidade)){
+                        cidadesRepetidas.add(infoCidades.get(i));
+                    }else{
+                        cidadesOriginais.add(infoCidades.get(i).cidade);
+                    }
+                }
+
+                for(int i = 0; i < cidadesRepetidas.size();i++){
+                    if(numeroPop >= cidadesRepetidas.get(i).populacao){
+
+                        for(int x = 0; x < infoPaises.size(); x++){
+                            if(cidadesRepetidas.get(i).alfa2.equals(infoPaises.get(x).alfa2)){
+                                nomeP = infoPaises.get(x).nome;
+                                break;
+                            }
+                        }
+                        stringResult += cidadesRepetidas.get(i).cidade + " (" + nomeP + "," + cidadesRepetidas.get(i).regiao;
+                    }
+                }
+
+
+                break;
+
+            case "GET_CITIES_AT_DISTANCE":
+
+                String alfa2P = "";
+                double distancia = 0;
+                int dist = Integer.parseInt(parts[1]);
+                String cidadeI;
+                String cidadeY;
+
+                for(int i = 0; i < infoPaises.size(); i++){
+                    if(parts[2].equals(infoPaises.get(i).nome)){
+                        alfa2P = infoPaises.get(i).alfa2;
+                        break;
+                    }
+                }
+                int y = 1;
+
+                for(int i = 0; i < infoCidades.size(); i++){
+                    while (y < infoCidades.size()){
+                        if(infoCidades.get(i).alfa2.equals(alfa2P) && infoCidades.get(y).alfa2.equals(alfa2P)){
+                            distancia = distance(infoCidades.get(i).latitude,infoCidades.get(i).longitude, infoCidades.get(y).latitude, infoCidades.get(y).longitude);
+                            cidadeI = String.valueOf(infoCidades.get(i));
+                            cidadeY = String.valueOf(infoCidades.get(y));
+
+                            if(distancia >= dist - 1 && distancia <= dist + 1){
+                                int comparison = cidadeI.compareTo(cidadeY);
+
+                                if (comparison < 0) {
+                                    // str1 vem antes de str2
+                                    stringResult += infoCidades.get(i).cidade + "->" + infoCidades.get(y).cidade + "\n";
+                                } else if (comparison > 0) {
+                                    // str2 vem antes de str1
+                                    stringResult += infoCidades.get(y).cidade + "->" + infoCidades.get(i).cidade + "\n";
+                                } else {
+                                    stringResult += infoCidades.get(i).cidade + "->" + infoCidades.get(y).cidade + "\n";
+                                }
+                            }
+                        }
+                        y++;
+                    }
+                    y = i + 1;
+                }
+
+
+                break;
+
+
+
+
             case "INSERT_CITY":
                 String alfa2IS = parts[1];
                 String nomeCidadeIS = parts[2];
@@ -481,4 +650,45 @@ public class Main {
 
 
     }
+
+
+    public static ArrayList<Cidade> ordenarCidadesQuickSort(Object cidades, int left, int right) {
+        if (left < right) {
+            int posicaoPivot = partition((ArrayList<Cidade>) cidades, left, right - 1);
+            cidades = ordenarCidadesQuickSort(cidades, left, posicaoPivot);
+            cidades = ordenarCidadesQuickSort(cidades, posicaoPivot + 1, right);
+        }
+        return (ArrayList<Cidade>) cidades;
+    }
+
+    public static int partition(ArrayList<Cidade> cidades, int left, int right) {
+        Cidade pivot = cidades.get(right);
+
+        int leftIdx = left;
+        int rightIdx = right - 1;
+
+        while (leftIdx <= rightIdx) {
+            if (cidades.get(leftIdx).getPopulacao() < pivot.getPopulacao() && cidades.get(rightIdx).getPopulacao() > pivot.getPopulacao()) {
+                Cidade temp = cidades.get(leftIdx);
+                cidades.set(leftIdx, cidades.get(rightIdx));
+                cidades.set(rightIdx, temp);
+                leftIdx++;
+                rightIdx--;
+            } else {
+                if (cidades.get(leftIdx).getPopulacao() >= pivot.getPopulacao()) {
+                    leftIdx++;
+                }
+                if (cidades.get(rightIdx).getPopulacao() <= pivot.getPopulacao()) {
+                    rightIdx--;
+                }
+            }
+        }
+
+        cidades.set(right, cidades.get(leftIdx));
+        cidades.set(leftIdx, pivot);
+
+        return leftIdx;
+    }
+
+
 }
