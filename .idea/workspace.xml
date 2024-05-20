@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b57e8bc6-e24b-48cd-a96e-889b8c472415" name="Changes" comment="4func">
+    <list default="true" id="b57e8bc6-e24b-48cd-a96e-889b8c472415" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ficheirosPequenos/cidades.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ficheirosPequenos/cidades.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ficheirosPequenos/paises.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ficheirosPequenos/paises.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Paises.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Paises.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,27 +37,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.TestMain.Test_Nr_Cidades.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestMain.Test_Nr_Paises.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestMain.Test_Obtem_Cidades.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestMain.Test_Pais_Tem_Cidades.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestMain.Test_ToString_id_maior_Q_700.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestMain.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/35191/Desktop/uni/1anoRepetido/aed2/Projeto/ficheiros pequenos&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.TestMain.Test_Nr_Cidades.executor": "Run",
+    "JUnit.TestMain.Test_Nr_Paises.executor": "Run",
+    "JUnit.TestMain.Test_Obtem_Cidades.executor": "Run",
+    "JUnit.TestMain.Test_Pais_Tem_Cidades.executor": "Run",
+    "JUnit.TestMain.Test_ToString_id_maior_Q_700.executor": "Run",
+    "JUnit.TestMain.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Rafael/Desktop/Escola/AED/Projeto-AED"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\35191\Desktop\uni\1anoRepetido\aed2\Projeto\ficheiros pequenos" />
@@ -202,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715606431662</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=".">
+      <option name="closed" value="true" />
+      <created>1716130658782</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716130658782</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -223,7 +232,8 @@
     <MESSAGE value="aa" />
     <MESSAGE value="2/9" />
     <MESSAGE value="3w31" />
-    <option name="LAST_COMMIT_MESSAGE" value="3w31" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

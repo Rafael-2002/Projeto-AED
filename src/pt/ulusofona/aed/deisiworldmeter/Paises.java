@@ -2,9 +2,7 @@ package pt.ulusofona.aed.deisiworldmeter;
 
 public class Paises {
     int id;
-    String alfa2;
-    String alfa3;
-    String nome;
+    String alfa2,alfa3,nome;
 
 
     public Paises(int id, String alfa2, String alfa3, String nome) {
@@ -16,9 +14,9 @@ public class Paises {
 
     @Override
     public String toString() {
-     int countNrMaioresQ700 = 0;
+        int countNrMaioresQ700 = 0;
 
-
+        int tamanho = Main.infoPopulacao.size();
 
         if(id>700){
             for (int i = 0; i < Main.infoPopulacao.size() ; i++) {
