@@ -25,10 +25,6 @@ public class Main {
     static int  primeiraLinha = 0;
     static ArrayList<Integer> linhasErradas = new ArrayList<>();
 
-
-
-
-
     public static ArrayList<? extends Object> getObjects(TipoEntidade tipo) {
 
         inputs.clear();
@@ -52,28 +48,6 @@ public class Main {
         }
         return new ArrayList<>();
     }
-
-
-    public static double formulaGenderGap(long popMasculina, long popFeminina) {
-        // Perform the calculation
-        double result = ((double) (popMasculina - popFeminina) / (popMasculina + popFeminina)) * 100;
-
-        // Round to two decimal places without rounding
-        result = Math.round(result * 100.0) / 100.0;
-
-        return result;
-    }
-    public static double formulaPopIcrease(long popTotalAtual, long popTotalAnterior) {
-        Double test = (double) (popTotalAtual - popTotalAnterior);
-        if (test <0){
-            return 0.0;
-        }
-        double result = (test / (popTotalAtual)) * 100;
-
-        result = Math.round(result * 100.0) / 100.0;
-        return result;
-    }
-
     public static boolean parseFiles(File pasta){
 
         countCidadesInvalidos = 0;
@@ -195,15 +169,10 @@ public class Main {
 
                 int checkCidadeRepetida = 0;
 
-                /*for (int i = 0; i < infoCidades.size(); i++) {
-                    if(infoCidades.get(i).alfa2.equals(dados[0]) && infoCidades.get(i).regiao.equals(dados[2])){
-                        checkCidadeRepetida++;
-                    }
-                }*/
 
 
 
-                if ( checkCidadeRepetida == 0 && dados.length == 6 && checkPais > 0 && !dados[3].isEmpty() && !dados[0].isEmpty() && !dados[2].isEmpty() && !dados[4].isEmpty() && !dados[5].isEmpty()) {
+                if (dados.length == 6 && checkPais > 0 && !dados[3].isEmpty() && !dados[0].isEmpty() && !dados[2].isEmpty() && !dados[4].isEmpty() && !dados[5].isEmpty()) {
                     String alfa2 = dados[0];
                     String cidade = dados[1];
                     String regiao = dados[2];
@@ -230,8 +199,42 @@ public class Main {
             return false;
         }
         primeiraLinha = 0;
+
+        removePais();
+
         return true;
     }
+    public static double formulaGenderGap(long popMasculina, long popFeminina) {
+        // Perform the calculation
+        double result = ((double) (popMasculina - popFeminina) / (popMasculina + popFeminina)) * 100;
+
+        // Round to two decimal places without rounding
+        result = Math.round(result * 100.0) / 100.0;
+
+        return result;
+    }
+    public static double formulaPopIcrease(long popTotalAtual, long popTotalAnterior) {
+        Double test = (double) (popTotalAtual - popTotalAnterior);
+        if (test <0){
+            return 0.0;
+        }
+        double result = (test / (popTotalAtual)) * 100;
+
+        result = Math.round(result * 100.0) / 100.0;
+        return result;
+    }
+
+    public static void removePais(){
+
+        HashSet<String> alfa2Cidades = new HashSet<>();
+        for (Cidade cidade : infoCidades) {
+            alfa2Cidades.add(cidade.alfa2);
+        }
+        // Passo 2: Remover países que não têm cidades correspondentes
+        infoPaises.removeIf(paises -> !alfa2Cidades.contains(paises.alfa2));
+
+    }
+
     public static String getCountryNameById(int countryId) {
         for (Paises pais : infoPaises) {
             if (pais.id == countryId) {
