@@ -47,10 +47,12 @@ public class TestMain {
         String resultado_Atual = String.valueOf(Main.getObjects(TipoEntidade.PAIS).size());
         assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
     }
-    public  void Test_Gender(){
-        String resultado_esperado = "3";
-        parseFiles(new File("ficheirosPequenos"));
-        String resultado_Atual = String.valueOf(Main.getObjects(TipoEntidade.PAIS).size());
+    @Test
+    public  void sumPopulations_OBG(){
+        String resultado_esperado = "344170503";
+        parseFiles(new File("ficheirosGrandes"));
+        Result resultado =  Main.execute("SUM_POPULATIONS Lesoto,Estados Unidos");
+        String resultado_Atual =resultado.result;
         assertEquals(resultado_esperado,resultado_Atual,"espetaculo");
     }
 

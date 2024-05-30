@@ -250,7 +250,7 @@ public class Main {
                 return pais.nome;
             }
         }
-        return ""; // Return an empty string if the country ID is not found
+        return "";
     }
     public static Result execute(String comando) {
         String[] s = {"QUIT", "HELP", "COUNT_CITIES", "GET_CITIES_BY_COUNTRY", "SUM_POPULATIONS", "GET_HISTORY", "GET_TOP_POPULATION_INCREASE", "GET_MISSING_HISTORY", "GET_MOST_POPULOUS", "GET_TOP_CITIES_BY_COUNTRY", "GET_DUPLICATE_CITIES", "GET_COUNTRIES_GENDER_GAP", "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES", "GET_CITIES_AT_DISTANCE", "GET_CITIES_AT_DISTANCE2", "INSERT_CITY", "REMOVE_COUNTRY"};
@@ -259,9 +259,12 @@ public class Main {
         Result queries = new Result(false, null, stringResult);
 
 
-        String[] parts = comando.split("\\s+");
+        String[]  parts= comando.split("\\s+",2);
         String command = parts[0];
 
+        if (!Objects.equals(command, "SUM_POPULATIONS")){
+            parts = comando.split("\\s+");
+        }
 
         for (String validCommand : s) {
             if (command.equals(validCommand)) {
@@ -746,7 +749,7 @@ public class Main {
         System.out.println("Welcome to DEISI World Meter");
 
         long start = System.currentTimeMillis();
-        boolean parselk = parseFiles(new File("ficheirosPequenos"));
+        boolean parselk = parseFiles(new File("ficheirosGrandes"));
         if (!parselk) {
             System.out.println("Error loading Files");
         }

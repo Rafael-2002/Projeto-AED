@@ -7,10 +7,8 @@
     <list default="true" id="b57e8bc6-e24b-48cd-a96e-889b8c472415" name="Changes" comment="17">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ficheirosPequenos/cidades.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ficheirosPequenos/cidades.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ficheirosPequenos/paises.csv" beforeDir="false" afterPath="$PROJECT_DIR$/ficheirosPequenos/paises.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pt/ulusofona/aed/deisiworldmeter/TestMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +44,7 @@
     &quot;JUnit.TestMain.Test_Pais_Tem_Cidades.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.TestMain.Test_ToString_id_maior_Q_700.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.TestMain.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestMain.sumPopulations_OBG.executor&quot;: &quot;Run&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
@@ -54,7 +53,11 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rafael/Desktop/Escola/AED/Projeto-AED&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rafael/Desktop/Escola/AED/Projeto-AED&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -76,22 +79,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestMain.Test_Nr_Cidades" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Projeto" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.Queries" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="pt.ulusofona.aed.deisiworldmeter" />
-      <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.TestMain" />
-      <option name="METHOD_NAME" value="Test_Nr_Cidades" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -144,13 +131,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestMain.sumPopulations_OBG" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Projeto" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pt.ulusofona.aed.deisiworldmeter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pt.ulusofona.aed.deisiworldmeter" />
+      <option name="MAIN_CLASS_NAME" value="pt.ulusofona.aed.deisiworldmeter.TestMain" />
+      <option name="METHOD_NAME" value="sumPopulations_OBG" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TestMain.sumPopulations_OBG" />
         <item itemvalue="JUnit.TestMain.Test_Pais_Tem_Cidades" />
         <item itemvalue="JUnit.TestMain.Test_Obtem_Cidades" />
         <item itemvalue="JUnit.TestMain.Test_ToString_id_maior_Q_700" />
-        <item itemvalue="JUnit.TestMain.Test_Nr_Cidades" />
       </list>
     </recent_temporary>
   </component>
@@ -158,6 +161,7 @@
     <attachedChunks>
       <set>
         <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-868cef46" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
