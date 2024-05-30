@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -108,50 +109,6 @@ public class Main {
 
         primeiraLinha = 0;
 
-        // Lê o arquivo de população
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePopulacao))) {
-            String linha;
-            int checkIdentificador=0;
-            int countLinha = 0;
-            reader.readLine();
-            while ((linha = reader.readLine()) != null) {
-                String[] dados = linha.split(",");
-                int tamanho = infoPaises.size();
-                for (int i = 0; i < infoPaises.size(); i++) {
-                    int id = Integer.parseInt(dados[0]);
-                    if(Objects.equals(infoPaises.get(i).id, id)) {
-                        checkIdentificador++;
-                        break;
-                    }
-                }
-                if (dados.length == 5 && dados[1].matches("\\d+")&&checkIdentificador >0 && !dados[0].isEmpty() && !dados[1].isEmpty()&&!dados[2].isEmpty()&&!dados[3].isEmpty() && !dados[4].isEmpty()) {
-                    checkIdentificador = 0;
-                    int id = Integer.parseInt(dados[0].trim());
-                    int ano = Integer.parseInt(dados[1].trim());
-                    long popMasculina = Long.parseLong(dados[2].trim());
-                    long popFeminina = Long.parseLong(dados[3].trim());
-                    Double densidade = Double.parseDouble(dados[4].trim());
-                    Populacao populacao = new Populacao(id, ano, popMasculina, popFeminina, densidade);
-                    infoPopulacao.add(populacao);
-                    countLinha++;
-
-                }else{
-                    countLinha++;
-                    countPopulacaoInvalidos++;
-                    if(primeiraLinha == 0){
-                        countLinha++;
-                        linhaPopulacao = countLinha;
-                        primeiraLinha = 1;
-                    }
-                }
-            }
-        }catch (IOException e) {
-            return false;
-        }
-
-        primeiraLinha = 0;
-
-        // Lê o arquivo de cidades
         try (BufferedReader reader = new BufferedReader(new FileReader(fileCidades))) {
             String linha;
             int countLinha = 0;
@@ -198,9 +155,53 @@ public class Main {
         } catch (IOException e) {
             return false;
         }
-        primeiraLinha = 0;
 
         removePais();
+
+        primeiraLinha = 0;
+
+        // Lê o arquivo de população
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePopulacao))) {
+            String linha;
+            int checkIdentificador=0;
+            int countLinha = 0;
+            reader.readLine();
+            while ((linha = reader.readLine()) != null) {
+                String[] dados = linha.split(",");
+                int tamanho = infoPaises.size();
+                for (int i = 0; i < infoPaises.size(); i++) {
+                    int id = Integer.parseInt(dados[0]);
+                    if(Objects.equals(infoPaises.get(i).id, id)) {
+                        checkIdentificador++;
+                        break;
+                    }
+                }
+                if (dados.length == 5 && dados[1].matches("\\d+")&&checkIdentificador >0 && !dados[0].isEmpty() && !dados[1].isEmpty()&&!dados[2].isEmpty()&&!dados[3].isEmpty() && !dados[4].isEmpty()) {
+                    checkIdentificador = 0;
+                    int id = Integer.parseInt(dados[0].trim());
+                    int ano = Integer.parseInt(dados[1].trim());
+                    long popMasculina = Long.parseLong(dados[2].trim());
+                    long popFeminina = Long.parseLong(dados[3].trim());
+                    Double densidade = Double.parseDouble(dados[4].trim());
+                    Populacao populacao = new Populacao(id, ano, popMasculina, popFeminina, densidade);
+                    infoPopulacao.add(populacao);
+                    countLinha++;
+
+                }else{
+                    countLinha++;
+                    countPopulacaoInvalidos++;
+                    if(primeiraLinha == 0){
+                        countLinha++;
+                        linhaPopulacao = countLinha;
+                        primeiraLinha = 1;
+                    }
+                }
+            }
+        }catch (IOException e) {
+            return false;
+        }
+
+        primeiraLinha = 0;
 
         return true;
     }
@@ -230,9 +231,17 @@ public class Main {
         for (Cidade cidade : infoCidades) {
             alfa2Cidades.add(cidade.alfa2);
         }
-        // Passo 2: Remover países que não têm cidades correspondentes
-        infoPaises.removeIf(paises -> !alfa2Cidades.contains(paises.alfa2));
 
+
+        for(int i = 0; i < infoPaises.size(); i++){
+            if(!alfa2Cidades.contains(infoPaises.get(i).alfa2)){
+                countPaisesInvalidos++;
+                if(linhaPais > i + 2){
+                    linhaPais = i + 2;
+                }
+                infoPaises.remove(i);
+            }
+        }
     }
 
     public static String getCountryNameById(int countryId) {
