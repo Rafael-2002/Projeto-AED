@@ -39,6 +39,6 @@ public class Cidade {
     }
 
     public String getFormattedPopulacao() {
-        return (int) (populacao / 1000) + "k";
+        return (int) (populacao / 1000) + "K";
     }
 }

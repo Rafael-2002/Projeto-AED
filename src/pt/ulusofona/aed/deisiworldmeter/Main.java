@@ -262,8 +262,17 @@ public class Main {
         String[]  parts= comando.split("\\s+",2);
         String command = parts[0];
 
-        if (!Objects.equals(command, "SUM_POPULATIONS")){
+        if (!Objects.equals(command, "SUM_POPULATIONS") && !Objects.equals(command, "GET_CITIES_BY_COUNTRY") &&
+                !Objects.equals(command, "GET_HISTORY") && !Objects.equals(command, "GET_TOP_CITIES_BY_COUNTRY")){
             parts = comando.split("\\s+");
+        }
+
+        if(Objects.equals(command, "GET_HISTORY")){
+            parts = comando.split("\\s+", 4);
+        }
+
+        if(Objects.equals(command, "GET_CITIES_BY_COUNTRY") || Objects.equals(command, "GET_TOP_CITIES_BY_COUNTRY")){
+            parts = comando.split("\\s+", 3);
         }
 
         for (String validCommand : s) {
@@ -651,10 +660,15 @@ public class Main {
                 }
 
 
-                for (int i = 0; i < numeroPaises; i++) {
-                    stringResult += infoCidadesOrdenado2.get(i).cidade + ":" + infoCidadesOrdenado2.get(i).getFormattedPopulacao() + "\n";
+                if(numeroPaises == -1){
+                    for (int i = 0; i < infoCidadesOrdenado2.size(); i++) {
+                        stringResult += infoCidadesOrdenado2.get(i).cidade + ":" + infoCidadesOrdenado2.get(i).getFormattedPopulacao() + "\n";
+                    }
+                }else{
+                    for (int i = 0; i < numeroPaises; i++) {
+                        stringResult += infoCidadesOrdenado2.get(i).cidade + ":" + infoCidadesOrdenado2.get(i).getFormattedPopulacao() + "\n";
+                    }
                 }
-
                 break;
 
 
