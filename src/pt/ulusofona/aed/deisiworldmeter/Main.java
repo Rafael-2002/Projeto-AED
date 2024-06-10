@@ -662,7 +662,9 @@ public class Main {
 
                 if(numeroPaises == -1){
                     for (int i = 0; i < infoCidadesOrdenado2.size(); i++) {
-                        stringResult += infoCidadesOrdenado2.get(i).cidade + ":" + infoCidadesOrdenado2.get(i).getFormattedPopulacao() + "\n";
+                        if(infoCidadesOrdenado2.get(i).populacao >= 10000){
+                            stringResult += infoCidadesOrdenado2.get(i).cidade + ":" + infoCidadesOrdenado2.get(i).getFormattedPopulacao() + "\n";
+                        }
                     }
                 }else{
                     for (int i = 0; i < numeroPaises; i++) {
@@ -688,7 +690,7 @@ public class Main {
                 }
 
                 for(int i = 0; i < cidadesRepetidas.size();i++){
-                    if(numeroPop >= cidadesRepetidas.get(i).populacao){
+                    if(cidadesRepetidas.get(i).populacao >= numeroPop){
 
                         for(int x = 0; x < infoPaises.size(); x++){
                             if(cidadesRepetidas.get(i).alfa2.equals(infoPaises.get(x).alfa2)){
@@ -696,7 +698,7 @@ public class Main {
                                 break;
                             }
                         }
-                        stringResult += cidadesRepetidas.get(i).cidade + " (" + nomeP + "," + cidadesRepetidas.get(i).regiao;
+                        stringResult += cidadesRepetidas.get(i).cidade + " (" + nomeP + "," + cidadesRepetidas.get(i).regiao + ")\n";
                     }
                 }
 
