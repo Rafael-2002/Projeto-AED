@@ -253,7 +253,7 @@ public class Main {
         return "";
     }
     public static Result execute(String comando) {
-        String[] s = {"QUIT", "HELP", "COUNT_CITIES", "GET_CITIES_BY_COUNTRY", "SUM_POPULATIONS", "GET_HISTORY", "GET_TOP_POPULATION_INCREASE", "GET_MISSING_HISTORY", "GET_MOST_POPULOUS", "GET_TOP_CITIES_BY_COUNTRY", "GET_DUPLICATE_CITIES", "GET_COUNTRIES_GENDER_GAP", "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES", "GET_CITIES_AT_DISTANCE", "GET_CITIES_AT_DISTANCE2", "INSERT_CITY", "REMOVE_COUNTRY"};
+        String[] s = {"QUIT", "HELP", "COUNT_CITIES", "GET_CITIES_BY_COUNTRY", "SUM_POPULATIONS", "GET_HISTORY", "GET_TOP_POPULATION_INCREASE", "GET_MISSING_HISTORY", "GET_MOST_POPULOUS", "GET_TOP_CITIES_BY_COUNTRY", "GET_DUPLICATE_CITIES", "GET_COUNTRIES_GENDER_GAP", "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES", "GET_CITIES_AT_DISTANCE", "GET_CITIES_AT_DISTANCE2","GET_COUNTRY_DETAILS", "INSERT_CITY", "REMOVE_COUNTRY"};
         boolean checkComandoValido = false;
         String stringResult = "";
         Result queries = new Result(false, null, stringResult);
@@ -302,11 +302,49 @@ public class Main {
                                 "GET_TOP_POPULATION_INCREASE <year-start> <year_end>\n" +
                                 "GET_DUPLICATE_CITIES_DIFFERENT_COUNTRIES <min-population>\n" +
                                 "GET_CITIES_AT_DISTANCE <distance> <country-name>\n" +
+                                "GET_COUNTRY_DETAILS <country-name>\n" +
                                 "INSERT_CITY <alfa2> <city-name> <region> <population>\n" +
                                 "REMOVE_COUNTRY <country-name>\n" +
                                 "HELP\n" +
                                 "QUIT");
                 stringResult = "";
+                break;
+
+
+            case "GET_COUNTRY_DETAILS":
+                String paisNome = parts[1];
+                int id = 0;
+                String alfa2Pais2 = "";
+                String alfa3Pais = "";
+                int numCidadePais = 0;
+                int popTotalF = 0;
+                int popTotalM = 0;
+                for(int i = 0; i < infoPaises.size(); i++){
+                    if(infoPaises.get(i).nome.equals(paisNome)){
+                        alfa2Pais2 = infoPaises.get(i).alfa2;
+                        alfa3Pais = infoPaises.get(i).alfa3;
+                        id = infoPaises.get(i).id;
+                        break;
+                    }
+                }
+
+                for(int i = 0; i < infoCidades.size(); i++){
+                    if(alfa2Pais2.equals(infoCidades.get(i).alfa2)){
+                        numCidadePais++;
+                    }
+                }
+
+                for(int i = 0; i < infoPopulacao.size(); i++){
+                    if(id == infoPopulacao.get(i).id){
+                        if(infoPopulacao.get(i).ano < 2025) {
+                            popTotalM += infoPopulacao.get(i).popMasculina;
+                            popTotalF += infoPopulacao.get(i).popFeminina;
+                        }
+                    }
+                }
+
+                stringResult = "Pais: " + paisNome + "\nAlfa2: " + alfa2Pais2 + "\nAlfa3: " + alfa3Pais + "\nNumero de cidades: " + numCidadePais + "\nPopulação Masculina desde 1950: " + popTotalM + "\nPopulação Feminina desde 1950: " + popTotalF;
+
                 break;
             case "COUNT_CITIES":
                 int countCities = 0;

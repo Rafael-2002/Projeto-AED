@@ -153,5 +153,22 @@ public class TestMain {
         }, resultParts);
     }
 
+    @Test
+    public void testCreativeCommand(){
+        assertTrue(Main.parseFiles(new File("test-files")));
+        Result result = Main.execute("GET_COUNTRY_DETAILS Portugal");
+        assertNotNull(result);
+        assertTrue(result.success);
+        String[] resultParts = result.result.split("\n");
+        assertArrayEquals(new String[] {
+                "Pais: Portugal",
+                "Alfa2: pt",
+                "Alfa3: prt",
+                "Numero de cidades: 43",
+                "População Masculina desde 1950: 348069837",
+                "População Feminina desde 1950: 379090865"
+        }, resultParts);
+    }
+
 
 }
